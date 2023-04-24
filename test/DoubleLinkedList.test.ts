@@ -1,5 +1,5 @@
 import { describe, expect } from "@jest/globals";
-import DoubleLinkedList from "../DoubleLinkedList";
+import DoubleLinkedList from "../implements/DoubleLinkedList";
 
 describe("test my DoubleLinkedList", () => {
   it("insert head", () => {

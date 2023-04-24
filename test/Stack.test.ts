@@ -1,5 +1,5 @@
 import { describe, expect } from "@jest/globals";
-import Stack from "../Stack";
+import Stack from "../implements/Stack";
 
 describe("test Stack", () => {
   it("test push", () => {
