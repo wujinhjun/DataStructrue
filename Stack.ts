@@ -16,11 +16,13 @@ interface IStack<T> {
   peek(): T;
   isEmpty(): boolean;
   size(): number;
+  [Symbol.iterator](): Iterator<T>;
 }
 
 export default class Stack<T> implements IStack<T> {
   top: ListNode<T> | null;
   _size: number;
+
   constructor() {
     this.top = null;
     this._size = 0;
@@ -58,5 +60,20 @@ export default class Stack<T> implements IStack<T> {
 
   size(): number {
     return this._size;
+  }
+
+  [Symbol.iterator](): Iterator<T> {
+    let current = this.top;
+    return {
+      next(): IteratorResult<T> {
+        if (current) {
+          const result = { value: current!.val, done: false };
+          current = current!.prev;
+          return result;
+        } else {
+          return { value: undefined, done: true };
+        }
+      },
+    };
   }
 }
