@@ -95,4 +95,17 @@ describe("test MyLinkedList", () => {
     mll.insertLast(10);
     expect(() => mll.get(10)).toThrow(`The linked list is out of bounds`);
   });
+
+  it("test iterator", () => {
+    const mll = new MyLinkedList();
+    for (let i = 10; i >= 0; i--) {
+      mll.insertFirst(i);
+    }
+
+    let index = 0;
+    for (const m of mll) {
+      expect(m).toBe(index);
+      index++;
+    }
+  });
 });
