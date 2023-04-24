@@ -20,6 +20,7 @@ interface ILinkedList {
   size(): number;
   toString(): string;
   setNode(index: number, val: number): void;
+  [Symbol.iterator](): Iterator<number>;
 }
 
 export default class MyLinkedList implements ILinkedList {
@@ -96,6 +97,21 @@ export default class MyLinkedList implements ILinkedList {
   setNode(index: number, val: number) {
     const node = this._findNode(index);
     node.val = val;
+  }
+
+  [Symbol.iterator](): Iterator<number> {
+    let current: ListNode | null = this._head.next;
+    return {
+      next() {
+        if (current) {
+          const result = { value: current.val, done: false };
+          current = current.next;
+          return result;
+        } else {
+          return { value: undefined, done: true };
+        }
+      },
+    };
   }
 
   _findNode(loc: number): ListNode {
