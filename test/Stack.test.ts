@@ -27,4 +27,17 @@ describe("test Stack", () => {
     expect(() => st.pop()).toThrow("Stack is empty");
     expect(() => st.peek()).toThrow("Stack is empty");
   });
+
+  it("test iterator", () => {
+    const st = new Stack();
+    for (let i = 0; i < 10; i++) {
+      st.push(i);
+    }
+    let index = 0;
+
+    for (const s of st) {
+      expect(s).toBe(9 - index);
+      index++;
+    }
+  });
 });
